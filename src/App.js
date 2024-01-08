@@ -1,23 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react'
+import Schedule from './ScheduleSelection'
 
 function App() {
+  const [language, setLanguage] = useState('english')
+
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value);
+  };
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <h1 className="greeting">{language === 'english' ? 'Hello!' : language === 'spanish' ? "¡Hola!" : 'Hola!'}</h1>
+        <div className="language-selection">
+        <select value={language} onChange={handleLanguageChange}>
+          <option value="english">English</option>
+          <option value="spanish">Español</option>
+          <option value="catalan">Català</option>
+        </select>
+        </div>
+        <Schedule language={language}/>
+        </header>
+        
     </div>
   );
 }
